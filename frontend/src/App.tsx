@@ -94,7 +94,7 @@ export default function App() {
 
       // Sector performance
       try {
-        const sectorRes = await axios.get("${API_BASE}/api/sectors");
+        const sectorRes = await axios.get('${API_BASE}/api/sectors');
         setSectors(sectorRes.data);
       } catch (err) {
         console.error("Sector fetch error:", (err as any).message);
@@ -103,9 +103,9 @@ export default function App() {
       // Top gainers, losers, and most active
       try {
         const [gainersRes, losersRes, activeRes] = await Promise.all([
-          axios.get("${API_BASE}/api/top-gainers"),
-          axios.get("${API_BASE}/api/top-losers"),
-          axios.get("${API_BASE}/api/most-active"),
+          axios.get('${API_BASE}/api/top-gainers'),
+          axios.get('${API_BASE}/api/top-losers'),
+          axios.get('${API_BASE}/api/most-active'),
         ]);
         setTopGainers(gainersRes.data);
         setTopLosers(losersRes.data);
@@ -116,7 +116,7 @@ export default function App() {
 
       // News
       try {
-        const newsRes = await axios.get("${API_BASE}/api/news/top");
+        const newsRes = await axios.get('${API_BASE}/api/news/top');
         setTopNews(newsRes.data);
       } catch (err) {
         console.error("Failed to fetch top news", (err as any).message);
@@ -124,7 +124,7 @@ export default function App() {
     };
 
     axios
-      .get("${API_BASE}/api/market-status")
+      .get('${API_BASE}/api/market-status')
       .then((res) => setMarketStatus(res.data.status))
       .catch(() => setMarketStatus("UNKNOWN"));
 
@@ -252,6 +252,9 @@ export default function App() {
                   </span>
                 </div>
               ))}
+              {Array.isArray(indices) && indices.length === 0 && (
+                <div className="text-red-500">Failed to load indices.</div>
+              )}  
             </div>
           </div>
 
