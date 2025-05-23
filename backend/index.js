@@ -1,9 +1,8 @@
-import express from 'express';
+const express = require('express');
+const dotenv = require('dotenv');
 import rateLimit from 'express-rate-limit';
-
 import axios from "axios";
 import cors from "cors";
-import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
 import { param, validationResult } from "express-validator";
 
@@ -17,9 +16,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: 'https://stock-analyzer-fawn.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 
 app.use(express.json());
