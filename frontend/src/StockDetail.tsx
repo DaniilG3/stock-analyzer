@@ -342,7 +342,7 @@ export default function StockDetail() {
                   setLoading(true);
                   setAnswer("");
                   try {
-                    const res = await axios.post('${API_BASE}/api/ai/chat', {
+                    const res = await axios.post(`${API_BASE}/api/ai/chat`, {
                       question,
                       symbol,
                     });
