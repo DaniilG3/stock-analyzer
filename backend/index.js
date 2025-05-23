@@ -14,12 +14,23 @@ if (!process.env.GEMINI_API_KEY || !process.env.POLYGON_API_KEY) {
 
 const app = express();
 
-// Middleware
+const allowedOrigins = [
+  'https://stock-analyzer-fawn.vercel.app',
+  'https://stock-analyzer-bmfurvpmo-daniilg3s-projects.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://stock-analyzer-fawn.vercel.app',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST'],
   credentials: true
 }));
+
 
 app.use(express.json());
 
