@@ -95,7 +95,6 @@ export default function App() {
       // Sector performance
       try {
         const sectorRes = await axios.get(`${API_BASE}/api/sectors`);
-        console.error("Expected array but got (sectors):", sectorRes.data);
         setSectors(sectorRes.data);
       } catch (err) {
         console.error("Sector fetch error:", (err as any).message);
@@ -108,11 +107,8 @@ export default function App() {
           axios.get(`${API_BASE}/api/top-losers`),
           axios.get(`${API_BASE}/api/most-active`),
         ]);
-        console.error("Expected array but got (gainers):", gainersRes.data);
         setTopGainers(gainersRes.data);
-        console.error("Expected array but got (losers):", losersRes.data);
         setTopLosers(losersRes.data);
-        console.error("Expected array but got (active):", activeRes.data);
         setMostActive(activeRes.data);
       } catch (err) {
         console.error("Top stocks fetch error:", (err as any).message);
@@ -121,7 +117,6 @@ export default function App() {
       // News
       try {
         const newsRes = await axios.get(`${API_BASE}/api/news/top`);
-        console.error("Expected array but got (news):", newsRes.data);
         setTopNews(newsRes.data);
       } catch (err) {
         console.error("Failed to fetch top news", (err as any).message);
