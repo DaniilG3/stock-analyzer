@@ -13,6 +13,7 @@ if (!process.env.GEMINI_API_KEY || !process.env.POLYGON_API_KEY) {
 }
 
 const app = express();
+app.set('trust proxy', true);
 
 const allowedOrigins = [
   'https://stock-analyzer-fawn.vercel.app',
