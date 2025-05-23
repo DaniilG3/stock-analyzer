@@ -5,6 +5,7 @@ import axios from 'axios';
 import cors from 'cors';
 import { GoogleGenAI } from '@google/genai';
 import { param, validationResult } from 'express-validator';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ if (!process.env.GEMINI_API_KEY || !process.env.POLYGON_API_KEY) {
 }
 
 const app = express();
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 const allowedOrigins = [
   'https://stock-analyzer-fawn.vercel.app',
@@ -45,6 +46,10 @@ const apiLimiter = rateLimit({
   message: "🚫 Too many requests from this IP. Please try again later.",
   standardHeaders: true,
   legacyHeaders: false,
+  skipFailedRequests: true, 
+  keyGenerator: (req) => {
+    return req.ip;
+  },
 });
 
 app.use('/api', apiLimiter);
