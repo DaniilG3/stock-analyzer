@@ -16,11 +16,13 @@ const app = express();
 
 const allowedOrigins = [
   'https://stock-analyzer-fawn.vercel.app',
-  'https://stock-analyzer-bmfurvpmo-daniilg3s-projects.vercel.app'
+  'https://stock-analyzer-qw83ckot9-daniilg3s-projects.vercel.app',
+  'http://localhost:5173'
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
+    console.log("Received origin:", origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -30,7 +32,6 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true
 }));
-
 
 app.use(express.json());
 
