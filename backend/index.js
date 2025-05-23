@@ -16,7 +16,7 @@ const app = express();
 app.set('trust proxy', 1);
 
 const allowedOrigins = [
-  'https://stock-analyzer-fawn.vercel.app',
+  'https://stock-analyzer-dg.vercel.app',
   'https://stock-analyzer-qw83ckot9-daniilg3s-projects.vercel.app',
   'http://localhost:5173'
 ];
