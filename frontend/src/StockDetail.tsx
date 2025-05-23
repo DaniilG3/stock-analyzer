@@ -16,6 +16,7 @@ import 'chartjs-adapter-date-fns';
 import axios from "axios";
 import { motion } from "framer-motion";
 import type { ChartOptions } from 'chart.js';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 ChartJS.register(
   CategoryScale,
@@ -45,7 +46,7 @@ export default function StockDetail() {
     async function fetchChartData() {
       if (!symbol) return;
       try {
-        const res = await axios.get(`http://localhost:4000/api/chart/${symbol}?range=${selectedPeriod}`);
+        const res = await axios.get(`${API_BASE}/api/chart/${symbol}?range=${selectedPeriod}`);
         const chartPoints = res.data;
         setChartData({
           labels: chartPoints.map((point: any) => new Date(point.t)),
@@ -73,7 +74,7 @@ export default function StockDetail() {
     if (!symbol) return;
     async function fetchRealTimeData() {
       try {
-        const res = await axios.get(`http://localhost:4000/api/quote/${symbol}`);
+        const res = await axios.get(`${API_BASE}/api/quote/${symbol}`);
         setRealTimeData(res.data);
       } catch (err) {
         console.error("Real-time fetch error:", err);
@@ -85,7 +86,7 @@ export default function StockDetail() {
   useEffect(() => {
     async function fetchAISuggestion() {
       try {
-        const res = await axios.get(`http://localhost:4000/api/ai/suggest/${symbol}`);
+        const res = await axios.get(`${API_BASE}/api/ai/suggest/${symbol}`);
         setAiSuggestion(res.data);
       } catch (err) {
         console.error("AI suggestion error:", err);
@@ -98,7 +99,7 @@ export default function StockDetail() {
     if (!symbol) return;
     const fetchNews = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/news/${symbol}`);
+        const res = await axios.get(`${API_BASE}/api/news/${symbol}`);
         if (res.status === 404) {
           setNews([]);
         } else {
@@ -341,7 +342,7 @@ export default function StockDetail() {
                   setLoading(true);
                   setAnswer("");
                   try {
-                    const res = await axios.post("http://localhost:4000/api/ai/chat", {
+                    const res = await axios.post("${API_BASE}/api/ai/chat", {
                       question,
                       symbol,
                     });

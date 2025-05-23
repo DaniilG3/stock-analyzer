@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 // Types for the data structures
 
@@ -48,7 +49,7 @@ export default function App() {
   // Navigate to stock detail page
   const handleClick = async (symbol: string) => {
     try {
-      await axios.get(`http://localhost:4000/api/quote/${symbol}`);
+      await axios.get(`${API_BASE}/api/quote/${symbol}`);
       navigate(`/stock/${symbol}`);
     } catch (err: any) {
       if (err.response?.status === 404) {
@@ -64,7 +65,7 @@ export default function App() {
     const popularSymbols = ["AAPL", "TSLA", "NVDA", "AMZN", "MSFT", "GOOGL"];
     Promise.all(
       popularSymbols.map((sym) =>
-        axios.get(`http://localhost:4000/api/quote/${sym}`).then((res) => res.data)
+        axios.get(`${API_BASE}/api/quote/${sym}`).then((res) => res.data)
       )
     ).then((results) => setQuickPicks(results));
 
@@ -80,7 +81,7 @@ export default function App() {
 
       for (const idx of indexSymbols) {
         try {
-          const res = await axios.get(`http://localhost:4000/api/quote/${idx.symbol}`);
+          const res = await axios.get(`${API_BASE}/api/quote/${idx.symbol}`);
           indexResults.push({
             name: idx.name,
             price: res.data.price,
@@ -95,7 +96,7 @@ export default function App() {
 
       // Sector performance
       try {
-        const sectorRes = await axios.get("http://localhost:4000/api/sectors");
+        const sectorRes = await axios.get("${API_BASE}/api/sectors");
         setSectors(sectorRes.data);
       } catch (err) {
         console.error("Sector fetch error:", (err as any).message);
@@ -104,9 +105,9 @@ export default function App() {
       // Top gainers, losers, and most active
       try {
         const [gainersRes, losersRes, activeRes] = await Promise.all([
-          axios.get("http://localhost:4000/api/top-gainers"),
-          axios.get("http://localhost:4000/api/top-losers"),
-          axios.get("http://localhost:4000/api/most-active"),
+          axios.get("${API_BASE}/api/top-gainers"),
+          axios.get("${API_BASE}/api/top-losers"),
+          axios.get("${API_BASE}/api/most-active"),
         ]);
         setTopGainers(gainersRes.data);
         setTopLosers(losersRes.data);
@@ -117,7 +118,7 @@ export default function App() {
 
       // News
       try {
-        const newsRes = await axios.get("http://localhost:4000/api/news/top");
+        const newsRes = await axios.get("${API_BASE}/api/news/top");
         setTopNews(newsRes.data);
       } catch (err) {
         console.error("Failed to fetch top news", (err as any).message);
@@ -125,7 +126,7 @@ export default function App() {
     };
 
     axios
-      .get("http://localhost:4000/api/market-status")
+      .get("${API_BASE}/api/market-status")
       .then((res) => setMarketStatus(res.data.status))
       .catch(() => setMarketStatus("UNKNOWN"));
 
@@ -140,7 +141,7 @@ export default function App() {
 
   const loadOptions = async (inputValue: string): Promise<Option[]> => {
     if (!inputValue) return [];
-    const res = await axios.get(`http://localhost:4000/api/search/${inputValue}`);
+    const res = await axios.get(`${API_BASE}/api/search/${inputValue}`);
     return res.data.map((stock: any) => ({
       label: `${stock.ticker} - ${stock.name}`,
       value: stock.ticker,
