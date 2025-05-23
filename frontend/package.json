@@ -7,10 +7,11 @@
     "dev": "convex dev --once && node setup.mjs && npm-run-all --parallel dev:frontend dev:backend",
     "dev:frontend": "vite --open",
     "dev:backend": "convex dev",
-    "lint": "tsc -p convex -noEmit --pretty false && tsc -p . -noEmit --pretty false && convex dev --once && vite build"
+    "lint": "tsc -p convex -noEmit --pretty false && tsc -p . -noEmit --pretty false && convex dev --once && vite build",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@convex-dev/auth": "^0.0.80",
     "@faker-js/faker": "^9.7.0",
     "axios": "^1.8.4",
     "chart.js": "^4.4.9",
