@@ -95,6 +95,7 @@ export default function App() {
       // Sector performance
       try {
         const sectorRes = await axios.get(`${API_BASE}/api/sectors`);
+        console.error("Expected array but got (sectors):", sectorRes.data);
         setSectors(sectorRes.data);
       } catch (err) {
         console.error("Sector fetch error:", (err as any).message);
@@ -107,8 +108,11 @@ export default function App() {
           axios.get(`${API_BASE}/api/top-losers`),
           axios.get(`${API_BASE}/api/most-active`),
         ]);
+        console.error("Expected array but got (gainers):", gainersRes.data);
         setTopGainers(gainersRes.data);
+        console.error("Expected array but got (losers):", losersRes.data);
         setTopLosers(losersRes.data);
+        console.error("Expected array but got (active):", activeRes.data);
         setMostActive(activeRes.data);
       } catch (err) {
         console.error("Top stocks fetch error:", (err as any).message);
@@ -117,6 +121,7 @@ export default function App() {
       // News
       try {
         const newsRes = await axios.get(`${API_BASE}/api/news/top`);
+        console.error("Expected array but got (news):", newsRes.data);
         setTopNews(newsRes.data);
       } catch (err) {
         console.error("Failed to fetch top news", (err as any).message);
@@ -264,7 +269,7 @@ export default function App() {
               Sector Performance
             </h2>
             <div className="space-y-3">
-              {sectors.map((sector) => (
+              {Array.isArray(sectors) && sectors.map((sector) => (
                 <div key={sector.name} className="flex justify-between items-center">
                   <span>{sector.name}</span>
                   <div className="flex items-center gap-1">
@@ -286,7 +291,7 @@ export default function App() {
               Top Gainers
             </h2>
             <div className="space-y-2">
-              {topGainers.map((stock) => (
+              {Array.isArray(topGainers) && topGainers.map((stock) => (
                 <div
                   key={stock.symbol}
                   onClick={() => handleClick(stock.symbol)}
@@ -311,7 +316,7 @@ export default function App() {
               Top Losers
             </h2>
             <div className="space-y-2">
-              {topLosers.map((stock) => (
+              {Array.isArray(topLosers) && topLosers.map((stock) => (
                 <div
                   key={stock.symbol}
                   onClick={() => handleClick(stock.symbol)}
@@ -336,7 +341,7 @@ export default function App() {
               Most Active
             </h2>
             <div className="space-y-2">
-              {mostActive.map((stock) => (
+              {Array.isArray(mostActive) && mostActive.map((stock) => (
                 <div
                   key={stock.symbol}
                   onClick={() => handleClick(stock.symbol)}
@@ -362,7 +367,7 @@ export default function App() {
             Latest News & Sentiment
           </h2>
           <div className="space-y-4">
-            {topNews.map((article) => (
+            {Array.isArray(topNews) && topNews.map((article) => (
               <div
                 key={article.url}
                 className="p-4 rounded-md border border-gray-700 bg-gray-800 hover:bg-gray-700 hover:border-purple-500 hover:shadow-purple-500/50 transition-all duration-200"
