@@ -4,8 +4,6 @@ import AsyncSelect from "react-select/async";
 import axios from "axios";
 const API_BASE = import.meta.env.VITE_API_URL;
 
-// Types for the data structures
-
 type Stock = {
   symbol: string;
   name: string;
