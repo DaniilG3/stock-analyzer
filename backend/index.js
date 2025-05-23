@@ -5,7 +5,6 @@ import axios from 'axios';
 import cors from 'cors';
 import { GoogleGenAI } from '@google/genai';
 import { param, validationResult } from 'express-validator';
-import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
