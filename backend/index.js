@@ -1,10 +1,10 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
-import axios from "axios";
-import cors from "cors";
-import { GoogleGenAI } from "@google/genai";
-import { param, validationResult } from "express-validator";
+import axios from 'axios';
+import cors from 'cors';
+import { GoogleGenAI } from '@google/genai';
+import { param, validationResult } from 'express-validator';
 
 dotenv.config();
 
