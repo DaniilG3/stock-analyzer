@@ -239,7 +239,7 @@ export default function App() {
                   {marketStatus}
                 </span>
               </div>
-              {indices.map((index) => (
+              {Array.isArray(indices) && indices.map((index) => (
                 <div key={index.name} className="flex justify-between">
                   <div>
                     <div className="font-semibold">{index.name}</div>
