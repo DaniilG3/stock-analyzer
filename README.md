@@ -18,7 +18,7 @@ A sleek, AI-powered stock market analytics web application. Get real-time stock 
 
 | Frontend | Backend | AI | Data | Hosting |
 |----------|---------|----|------|---------|
-| React, TailwindCSS, Chart.js | Node.js, Express, FastAPI (optional) | Gemini API | Polygon.io, Yahoo Finance API, PostgreSQL | Vercel (frontend), Railway (backend) |
+| React, TailwindCSS, Chart.js | Node.js, Express, FastAPI | Gemini API | Polygon.io, Yahoo Finance API, PostgreSQL | Vercel (frontend), Railway (backend) |
 
 ## 🚀 Getting Started
 
