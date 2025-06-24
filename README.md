@@ -12,12 +12,13 @@ A sleek, AI-powered stock market analytics web application. Get real-time stock 
 - 📰 **News with Sentiment** — See top news with sentiment analysis (Positive / Neutral / Negative).
 - 💬 **AI Chatbot** — Ask natural-language questions about any stock.
 - 📊 **Market Overview** — Track indices, top gainers/losers, and sectors at a glance.
+- 🗄️ **SQL-Backed Data** — Stock data, AI summaries, and news sentiment stored and queried efficiently with PostgreSQL.
 
 ## 🛠 Tech Stack
 
 | Frontend | Backend | AI | Data | Hosting |
 |----------|---------|----|------|---------|
-| React, TailwindCSS, Chart.js | Node.js, Express, FastAPI (optional) | Gemini API | Polygon.io, Yahoo Finance API | Vercel (frontend), Railway (backend) |
+| React, TailwindCSS, Chart.js | Node.js, Express, FastAPI (optional) | Gemini API | Polygon.io, Yahoo Finance API, PostgreSQL | Vercel (frontend), Railway (backend) |
 
 ## 🚀 Getting Started
 
@@ -27,7 +28,7 @@ git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 ```
 ### 2️⃣ Set up environment variables
-Create a .env file:
+Create a `.env` file:
 ```
 EMINI_API_KEY=your_gemini_key
 POLYGON_API_KEY=your_polygon_key
