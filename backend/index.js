@@ -183,7 +183,7 @@ app.get("/api/ai/suggest/:symbol", async (req, res) => {
   
     try {
       const suggestionRes = await genAI.models.generateContent({
-        model: "gemini-1.5-pro",
+        model: "models/gemini-1.5-flash",
         contents: [{ role: "user", parts: [{ text: suggestionPrompt }] }],
       });
   
@@ -197,7 +197,7 @@ app.get("/api/ai/suggest/:symbol", async (req, res) => {
         .map(line => line.replace(/^(\*|\d+\.|\s)+/, "").trim());
   
       const highlightsRes = await genAI.models.generateContent({
-        model: "gemini-1.5-pro",
+        model: "models/gemini-1.5-flash",
         contents: [{ role: "user", parts: [{ text: highlightsPrompt }] }],
       });
   
