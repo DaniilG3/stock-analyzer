@@ -308,7 +308,7 @@ Headline: "${title}"
 
         try {
           const response = await genAI.models.generateContent({
-            model: "gemini-1.5-pro",
+            model: "models/gemini-1.5-flash",
             contents: [{ role: "user", parts: [{ text: prompt }] }],
           });
 
@@ -355,7 +355,7 @@ Respond with a concise, investor-friendly answer.`;
 
   try {
     const response = await genAI.models.generateContent({
-      model: "gemini-1.5-pro",
+      model: "models/gemini-1.5-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
     });
 
@@ -422,7 +422,7 @@ Headline: "${title}"
 
         try {
           const response = await genAI.models.generateContent({
-            model: "gemini-1.5-pro",
+            model: "models/gemini-1.5-flash",
             contents: [{ role: "user", parts: [{ text: prompt }] }],
           });
 
