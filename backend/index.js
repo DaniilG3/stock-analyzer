@@ -183,7 +183,7 @@ app.get("/api/ai/suggest/:symbol", async (req, res) => {
   
     try {
       const suggestionRes = await genAI.models.generateContent({
-        model: "models/gemini-1.5-flash",
+        model: "models/gemini-2.0-flash",
         contents: [{ role: "user", parts: [{ text: suggestionPrompt }] }],
       });
   
@@ -197,7 +197,7 @@ app.get("/api/ai/suggest/:symbol", async (req, res) => {
         .map(line => line.replace(/^(\*|\d+\.|\s)+/, "").trim());
   
       const highlightsRes = await genAI.models.generateContent({
-        model: "models/gemini-1.5-flash",
+        model: "models/gemini-2.0-flash",
         contents: [{ role: "user", parts: [{ text: highlightsPrompt }] }],
       });
   
@@ -308,7 +308,7 @@ Headline: "${title}"
 
         try {
           const response = await genAI.models.generateContent({
-            model: "models/gemini-1.5-flash",
+            model: "models/gemini-2.0-flash",
             contents: [{ role: "user", parts: [{ text: prompt }] }],
           });
 
@@ -355,7 +355,7 @@ Respond with a concise, investor-friendly answer.`;
 
   try {
     const response = await genAI.models.generateContent({
-      model: "models/gemini-1.5-flash",
+      model: "models/gemini-2.0-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
     });
 
@@ -422,7 +422,7 @@ Headline: "${title}"
 
         try {
           const response = await genAI.models.generateContent({
-            model: "models/gemini-1.5-flash",
+            model: "models/gemini-2.0-flash",
             contents: [{ role: "user", parts: [{ text: prompt }] }],
           });
 
